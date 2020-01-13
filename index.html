@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="description" content="">
     <meta name="author" content="">
+	  
     <title>MapaTaal</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -19,7 +20,6 @@
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
     <link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css">
     <link rel="stylesheet" href="assets/css/app.css">
-
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
@@ -41,8 +41,6 @@
           
           <ul class="nav navbar-nav">
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
-			
-			
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -107,8 +105,8 @@ Power supply is still cut off in Talisay and Laurel, Batangas. Further, roads fr
               <div class="tab-pane fade active in" id="about">
                 <p> MapaTaal aims to consolidate public geospatial data related to the recent Taal Volcano eruption. </p>
 		<p> The platform is based on <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a> and <a href="https://github.com/bmcbride/bootleaf" target="_blank">BootLeaf</a>.</p>
-		<p> Current maps are from Phivolcs' GIS database found <a href="https://gisweb.phivolcs.dost.gov.ph/" target="_blank"> here </a>
-		<p> For suggestions, feature requests and bug reporting, please email bantaytaal2020@gmail.com </p>	
+		<p> Current maps are from Phivolcs' GIS database found <a href="https://gisweb.phivolcs.dost.gov.ph/" target="_blank"> here. </a>
+		<p> For suggestions, feature requests and bug reporting, please email bantaytaal2020@gmail.com. </p>	
               </div>
 	  
               <div id="disclaimer" class="tab-pane fade text-danger">
@@ -282,7 +280,7 @@ Power supply is still cut off in Talisay and Laurel, Batangas. Further, roads fr
         bounds_group.addLayer(layer_Taal_BallisticProjectiles_2011_3);
         map.addLayer(layer_Taal_BallisticProjectiles_2011_3);
         var baseMaps = {};
-        L.control.layers(baseMaps,{"Taal_Ballistic-Projectiles_2011": layer_Taal_BallisticProjectiles_2011_3,"Taal_Seiches-Fissuring_2011": layer_Taal_SeichesFissuring_2011_2,"Taal_Base-Surge_2011": layer_Taal_BaseSurge_2011_1,"Stamen Terrain": layer_StamenTerrain_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{"Ballistic Projectiles Hazard Map": layer_Taal_BallisticProjectiles_2011_3,"Occilation and Fissuring Hazard Map": layer_Taal_SeichesFissuring_2011_2,"Base Surge Hazard Map": layer_Taal_BaseSurge_2011_1,"Stamen Terrain": layer_StamenTerrain_0,},{collapsed:false}).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
