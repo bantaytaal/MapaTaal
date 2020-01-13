@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[13.81794625950125,120.69488759337253],[14.204109735626625,121.4176032657044]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_StamenTerrain_0 = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_StamenTerrain_0;
+        map.addLayer(layer_StamenTerrain_0);
+        var img_Taal_BaseSurge_2011_1 = 'data/Taal_BaseSurge_2011_1.png';
+        var img_bounds_Taal_BaseSurge_2011_1 = [[13.81750548807627,120.7767309486747],[14.203039069187675,121.3313924161253]];
+        var layer_Taal_BaseSurge_2011_1 = new L.imageOverlay(img_Taal_BaseSurge_2011_1, img_bounds_Taal_BaseSurge_2011_1);
+        bounds_group.addLayer(layer_Taal_BaseSurge_2011_1);
+        var img_Taal_SeichesFissuring_2011_2 = 'data/Taal_SeichesFissuring_2011_2.png';
+        var img_bounds_Taal_SeichesFissuring_2011_2 = [[13.81726546148884,120.7765954674586],[14.20314367824051,121.3309575655687]];
+        var layer_Taal_SeichesFissuring_2011_2 = new L.imageOverlay(img_Taal_SeichesFissuring_2011_2, img_bounds_Taal_SeichesFissuring_2011_2);
+        bounds_group.addLayer(layer_Taal_SeichesFissuring_2011_2);
+        var img_Taal_BallisticProjectiles_2011_3 = 'data/Taal_BallisticProjectiles_2011_3.png';
+        var img_bounds_Taal_BallisticProjectiles_2011_3 = [[13.81783957938138,120.77679231039029],[14.202888712443812,121.33058811958624]];
+        var layer_Taal_BallisticProjectiles_2011_3 = new L.imageOverlay(img_Taal_BallisticProjectiles_2011_3, img_bounds_Taal_BallisticProjectiles_2011_3);
+        bounds_group.addLayer(layer_Taal_BallisticProjectiles_2011_3);
+        map.addLayer(layer_Taal_BallisticProjectiles_2011_3);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{"Taal_Ballistic-Projectiles_2011": layer_Taal_BallisticProjectiles_2011_3,"Taal_Seiches-Fissuring_2011": layer_Taal_SeichesFissuring_2011_2,"Taal_Base-Surge_2011": layer_Taal_BaseSurge_2011_1,"Stamen Terrain": layer_StamenTerrain_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
